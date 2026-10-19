@@ -1,0 +1,8 @@
+<header class="site-header">
+  <a class="brand" href="{{ "/" | relURL }}">{{ site.Params.author }}</a>
+  <nav aria-label="Main">
+    <a href="{{ "/posts/" | relURL }}"{{ if hasPrefix .RelPermalink "/posts/" }} aria-current="page"{{ end }}>Posts</a>
+    <a href="{{ "/tags/" | relURL }}"{{ if hasPrefix .RelPermalink "/tags/" }} aria-current="page"{{ end }}>Tags</a>
+    <a href="{{ "/index.xml" | relURL }}">RSS</a>
+  </nav>
+</header>

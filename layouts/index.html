@@ -1,0 +1,19 @@
+{{ define "masthead" }}
+<div class="band-inner hero">
+  <h1 class="hero-title">Java, Spring Boot, AWS, and how they fit together.</h1>
+  <p class="hero-sub">I'm Abdelbaki, a software engineer. These are my notes on the language, the framework, the cloud services and the architecture decisions around them.</p>
+</div>
+{{ end }}
+
+{{ define "main" }}
+<section class="index" aria-label="Posts by topic">
+  {{ range site.Taxonomies.categories.ByCount }}
+  <div class="topic" id="{{ .Page.Title | urlize }}">
+    <h2><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h2>
+    <ol class="entries">
+      {{ range .Pages.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}
+    </ol>
+  </div>
+  {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.Locale | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <meta name="color-scheme" content="light dark">
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">{{ end }}
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <link rel="preload" href="/fonts/BricolageGrotesque-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/SourceSerif4-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+  {{ $fonts := resources.Get "css/fonts.css" }}
+  {{ $main := resources.Get "css/main.css" }}
+  {{ $hl := resources.Get "css/highlight.css" }}
+  {{ $css := slice $fonts $main $hl | resources.Concat "css/site.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+</head>
+<body class="{{ if .IsHome }}home{{ else if .IsPage }}post{{ else }}list{{ end }}">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="masthead">
+    {{ partial "header.html" . }}
+    {{ block "masthead" . }}{{ end }}
+  </div>
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  {{ if .IsPage }}<script src="/js/post.js" defer></script>{{ end }}
+</body>
+</html>

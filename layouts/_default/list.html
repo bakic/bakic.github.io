@@ -1,0 +1,12 @@
+{{ define "masthead" }}
+<div class="band-inner page-head">
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+</div>
+{{ end }}
+
+{{ define "main" }}
+<ol class="entries entries-wide">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}
+</ol>
+{{ end }}

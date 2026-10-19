@@ -1,0 +1,11 @@
+{{ define "masthead" }}
+<div class="band-inner page-head"><h1>{{ .Title }}</h1></div>
+{{ end }}
+
+{{ define "main" }}
+<ul class="tag-cloud">
+  {{ range .Data.Terms.Alphabetical }}
+  <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> <span>{{ .Count }}</span></li>
+  {{ end }}
+</ul>
+{{ end }}

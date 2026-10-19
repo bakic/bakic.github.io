@@ -1,0 +1,29 @@
+{{ define "masthead" }}
+<div class="band-inner article-head">
+    <h1>{{ .Title }}</h1>
+    <p class="article-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      <span>{{ .ReadingTime }} min read</span>
+      {{ range .GetTerms "categories" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}
+    </p>
+</div>
+{{ end }}
+
+{{ define "main" }}
+<article class="article">
+  {{ if gt .WordCount 600 }}
+  <aside class="toc" aria-label="Contents">
+    <p class="toc-title">On this page</p>
+    {{ .TableOfContents }}
+  </aside>
+  {{ end }}
+  <div class="prose">{{ .Content }}</div>
+  <footer class="article-foot">
+    {{ with .GetTerms "tags" }}<ul class="tags">{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}
+    <nav class="pager" aria-label="More posts">
+      {{ with .PrevInSection }}<a href="{{ .RelPermalink }}" rel="prev"><span>Older</span>{{ .Title }}</a>{{ end }}
+      {{ with .NextInSection }}<a href="{{ .RelPermalink }}" rel="next"><span>Newer</span>{{ .Title }}</a>{{ end }}
+    </nav>
+  </footer>
+</article>
+{{ end }}
