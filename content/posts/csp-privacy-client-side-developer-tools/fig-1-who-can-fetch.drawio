@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="fig-1" id="fig1">
+    <mxGraphModel dx="1200" dy="600" grid="1" gridSize="10" page="1" pageWidth="1200" pageHeight="500" background="#ffffff">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Only the service worker can fetch, and only from its own origin" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="30" y="10" width="800" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="host" value="&lt;b&gt;tidybyte.dev&lt;/b&gt;&lt;br&gt;Cloudflare Workers static assets&lt;br&gt;HTML, JS, CSS, sw.js,&lt;br&gt;response headers (_headers)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3f4f6;strokeColor=#6b7280;fontSize=13;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="30" y="220" width="220" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="tab" value="Browser tab" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9ca3af;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=6;fontSize=13;fontColor=#6b7280;" vertex="1" parent="1">
+          <mxGeometry x="440" y="70" width="320" height="390" as="geometry"/>
+        </mxCell>
+        <mxCell id="page" value="&lt;b&gt;Page and tool code&lt;/b&gt;&lt;br&gt;policies: _headers + meta&lt;br&gt;connect-src 'none'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;fontSize=13;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="470" y="130" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="sw" value="&lt;b&gt;Service worker (sw.js)&lt;/b&gt;&lt;br&gt;its own policy, from its own response&lt;br&gt;connect-src 'self'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;fontSize=13;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="470" y="340" width="260" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="other" value="&lt;b&gt;Any other origin&lt;/b&gt;&lt;br&gt;analytics, APIs, trackers,&lt;br&gt;an attacker's server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;fontSize=13;fontColor=#1f2937;" vertex="1" parent="1">
+          <mxGeometry x="950" y="220" width="220" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="1. HTML, JS, CSS load&lt;br&gt;(default-src 'self')" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#15803d;strokeWidth=2;fontSize=12;fontColor=#15803d;labelBackgroundColor=#ffffff;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="host" target="page">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="2. cache.addAll of the&lt;br&gt;precache list&lt;br&gt;(connect-src 'self')" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#15803d;strokeWidth=2;fontSize=12;fontColor=#15803d;labelBackgroundColor=#ffffff;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="host" target="sw">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="3. fetch, XHR, beacon,&lt;br&gt;WebSocket: blocked&lt;br&gt;(connect-src 'none')" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#dc2626;strokeWidth=2;dashed=1;fontSize=12;fontColor=#b91c1c;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="page" target="other">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="4. blocked: not the&lt;br&gt;same origin" style="edgeStyle=orthogonalEdgeStyle;html=1;endArrow=block;strokeColor=#dc2626;strokeWidth=2;dashed=1;fontSize=12;fontColor=#b91c1c;labelBackgroundColor=#ffffff;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="sw" target="other">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
