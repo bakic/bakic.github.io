@@ -6,6 +6,7 @@
 {{ end }}
 
 {{ define "main" }}
+{{ partial "filter.html" . }}
 <ol class="entries entries-wide">
   {{ range .Pages.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}
 </ol>

@@ -1,19 +1,37 @@
 {{ define "masthead" }}
 <div class="band-inner hero">
-  <h1 class="hero-title">Java, Spring Boot, AWS, and how they fit together.</h1>
+  <h1 class="hero-title">Java, Spring Boot, AWS, and how they fit.</h1>
   <p class="hero-sub">I'm Abdelbaki, a software engineer. These are my notes on the language, the framework, the cloud services and the architecture decisions around them.</p>
 </div>
 {{ end }}
 
 {{ define "main" }}
-<section class="index" aria-label="Posts by topic">
-  {{ range site.Taxonomies.categories.ByCount }}
-  <div class="topic" id="{{ .Page.Title | urlize }}">
-    <h2><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></h2>
-    <ol class="entries">
-      {{ range .Pages.ByDate.Reverse }}{{ partial "entry.html" . }}{{ end }}
-    </ol>
-  </div>
+{{ $posts := where site.RegularPages "Section" "posts" }}
+{{ $posts = $posts.ByDate.Reverse }}
+<section class="latest" aria-label="Latest posts">
+  {{ with index $posts 0 }}
+  <a class="lead" href="{{ .RelPermalink }}">
+    {{ range .GetTerms "categories" }}<span class="post-tag">{{ .LinkTitle }}</span>{{ end }}
+    <h2>{{ .Title }}</h2>
+    {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    <span class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read</span>
+  </a>
   {{ end }}
+  <div class="stack">
+    {{ range first 2 (after 1 $posts) }}
+    <a class="card" href="{{ .RelPermalink }}">
+      {{ range .GetTerms "categories" }}<span class="post-tag">{{ .LinkTitle }}</span>{{ end }}
+      <h3>{{ .Title }}</h3>
+      <span class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time> · {{ .ReadingTime }} min read</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<section class="all-posts" aria-label="All posts">
+  {{ partial "filter.html" . }}
+  <ol class="entries">
+    {{ range after 3 $posts }}{{ partial "entry.html" . }}{{ end }}
+  </ol>
 </section>
 {{ end }}

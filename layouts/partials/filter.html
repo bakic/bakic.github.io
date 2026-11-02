@@ -1,0 +1,8 @@
+{{ $cur := . }}
+<nav class="filter" aria-label="Filter by topic">
+  <h2>{{ if .IsHome }}All posts{{ else }}Topics{{ end }}</h2>
+  <a href="{{ "/posts/" | relURL }}"{{ if eq $cur.RelPermalink "/posts/" }} aria-current="page"{{ end }}>All</a>
+  {{ range site.Taxonomies.categories.ByCount }}
+  <a href="{{ .Page.RelPermalink }}"{{ if eq $cur.RelPermalink .Page.RelPermalink }} aria-current="page"{{ end }}>{{ .Page.Title }}</a>
+  {{ end }}
+</nav>
