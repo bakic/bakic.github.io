@@ -63,9 +63,9 @@
     banner.setAttribute("role", "dialog");
     banner.setAttribute("aria-label", "Cookie consent");
     banner.innerHTML =
-      '<p>I use Google Analytics to see which articles get read. It sets cookies ' +
-      'only if you accept. Nothing is sent to Google before that, and you can ' +
-      'change your mind any time from the footer.</p>' +
+      '<p>This website uses cookies to analyse traffic and improve your ' +
+      'experience. You can accept or decline them, and change your choice ' +
+      'at any time from the footer.</p>' +
       '<div class="consent-actions">' +
       '<button type="button" data-choice="denied">Decline</button>' +
       '<button type="button" data-choice="granted">Accept</button>' +
