@@ -2,6 +2,6 @@
   <div class="footer-inner">
     <p class="footer-name">{{ site.Params.author }}</p>
     <p>{{ site.Params.description }}</p>
-    <p><a href="{{ "/index.xml" | relURL }}">Subscribe by RSS</a>{{ if hugo.IsProduction }} · <a href="#cookie-settings" data-consent-open>Cookie settings</a>{{ end }}</p>
+    <p><a href="{{ "/index.xml" | relURL }}">Subscribe by RSS</a> · <a href="{{ "/privacy/" | relURL }}">Privacy</a>{{ if hugo.IsProduction }} · <a href="#cookie-settings" data-consent-open>Cookie settings</a>{{ end }}</p>
   </div>
 </footer>

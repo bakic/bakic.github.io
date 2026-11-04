@@ -553,3 +553,4 @@ pre:hover .copy, pre:focus-within .copy, .copy:focus-visible { opacity: 1; }
 }
 .consent button[data-choice="granted"] { background: var(--accent); color: var(--paper); }
 .consent button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.consent a { color: var(--accent); white-space: nowrap; }

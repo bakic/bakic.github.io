@@ -65,7 +65,8 @@
     banner.innerHTML =
       '<p>This website uses cookies to analyse traffic and improve your ' +
       'experience. You can accept or decline them, and change your choice ' +
-      'at any time from the footer.</p>' +
+      'at any time from the footer. ' +
+      '<a href="/privacy/">Privacy policy</a></p>' +
       '<div class="consent-actions">' +
       '<button type="button" data-choice="denied">Decline</button>' +
       '<button type="button" data-choice="granted">Accept</button>' +
