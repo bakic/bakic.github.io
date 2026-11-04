@@ -7,16 +7,6 @@
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
   <meta name="color-scheme" content="light dark">
   <meta name="google-site-verification" content="CfmV6CYj8alaH9dI_4H5O9s3olt3cmm_Wg8aan7-oVc" />
-  {{ if hugo.IsProduction }}
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WC66WFZSZB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-WC66WFZSZB');
-  </script>
-  {{ end }}
   <link rel="canonical" href="{{ .Permalink }}">
   {{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">{{ end }}
   <meta property="og:title" content="{{ .Title }}">
@@ -41,6 +31,7 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
+  {{ if hugo.IsProduction }}<script src="/js/consent.js" data-ga="G-WC66WFZSZB" defer></script>{{ end }}
   {{ if .IsPage }}<script src="/js/post.js" defer></script>{{ end }}
 </body>
 </html>
