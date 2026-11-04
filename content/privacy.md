@@ -27,6 +27,8 @@ If you accept, Google Analytics sets two cookies in your browser:
 
 Through these, Google receives pseudonymous usage data: the pages you view, when, the referring site, your approximate location, and your browser, device and language. I use it only as aggregate statistics. I do not use it for advertising, and Google's advertising signals (ad storage, ad user data, ad personalization) stay disabled.
 
+**Retention:** event data (the individual page views) is kept for 2 months. Data tied to a cookie identifier, such as your user-level data, is kept for 14 months, and that period restarts each time you visit again. Aggregated reports, which cannot be traced back to you, are kept longer.
+
 Google may process this data on servers outside the EEA, including in the United States. Google's own terms and privacy policy describe those safeguards.
 
 **Legal basis:** your consent (Article 6(1)(a) GDPR).
